@@ -1,0 +1,1 @@
+const ePub = require("epubjs").default;
