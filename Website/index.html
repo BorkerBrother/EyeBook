@@ -4,18 +4,17 @@
 <html>
 <head>
     <title>eyeBook</title>
-    <script src="path/to/epub.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/epubjs/dist/epub.min.js"></script>
+
     <script src="https://webgazer.cs.brown.edu/webgazer.js?"></script>
+
     <link rel="stylesheet" type="text/css" href="app.css">
     <script>
-
-
-
-
         webgazer.setRegression('ridge') /* setzt die Art der Regression auf Ridge */
             .setTracker('clmtrackr') /* setzt den Tracker auf clmtrackr */
             .setGazeListener(function (data, clock) {
-                /* hier kann man den Code zur Verarbeitung der Daten einfügen */
+                /* hier kann man den Code zur Verarbeitung der Daten einfï¿½gen */
             })
             .begin() /* startet die Verfolgung */
             .showPredictionPoints(true); /* zeigt die Vorhersagepunkte an */
@@ -68,15 +67,54 @@
     </script>
 
 </head>
-<body>
-    <h1>eyeBook</h1>
-    <video id="webgazerVideoFeed" width="320" height="240" style="display:none;"></video>
+<video id="webgazerVideoFeed" width="320" height="240" style="display:none;"></video>
 
-    <div id="book">
+<body>
+    <div id="area"></div>
+    <h1>eyeBook</h1>
+    <body>
+
+        <body>
+            <div id="reader" style="background-color: antiquewhite; width: 600px; height: 400px"></div>
+
+        </body>
+
         <script>
-            var book = ePub("path/to/book.epub");
-            book.renderTo("book");
+            var book = ePub("https://s3.amazonaws.com/moby-dick/moby-dick.epub");
+            var rendition = book.renderTo("reader", {
+                method: "default",
+                width: 600,
+                height: 400
+            });
+            var displayed = rendition.display();
+
+            // Create the prev and next buttons
+            var prevButton = document.createElement("button");
+            prevButton.innerHTML = "Previous";
+            prevButton.style.cssText = "position: absolute; left: 0;";
+            var nextButton = document.createElement("button");
+            nextButton.innerHTML = "Next";
+            nextButton.style.cssText = "position: absolute; right: 0;";
+
+            // Append the buttons to the reader div
+            document.getElementById("reader").appendChild(prevButton);
+            document.getElementById("reader").appendChild(nextButton);
+
+            prevButton.addEventListener("click", function () {
+                var currentLocation = rendition.currentLocation();
+                if (currentLocation.start.index > 0) {
+                    var prevLocation = currentLocation.start.index - 1;
+                    rendition.display(prevLocation);
+                }
+            });
+            nextButton.addEventListener("click", function () {
+                var currentLocation = rendition.currentLocation();
+                if (currentLocation.start.index < book.spine.length - 1) {
+                    var nextLocation = currentLocation.start.index + 1;
+                    rendition.display(nextLocation);
+                }
+            });
+
         </script>
-    </div>
-</body>
+
 </html>
