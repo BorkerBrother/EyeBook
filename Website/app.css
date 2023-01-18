@@ -11,14 +11,50 @@
 }
 
 #reader {
-    height: 600px;
-    width: 400px;
+    height: 800px;
+    width: 600px;
     overflow: hidden !important;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: auto;
 }
+
+/* Style for the prev and next buttons */
+#prevButton, #nextButton {
+    font-size: 30px;
+    padding: 150px 150px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: auto;
+    background-color: white;
+    border: 2px solid gray;
+    cursor: pointer;
+}
+
+/* Style for the prev button */
+#prevButton {
+    left: 10px;
+}
+
+/* Style for the next button */
+#nextButton {
+    right: 10px;
+    transform: rotate(180deg);
+}
+
+    /* Style for the arrows inside the buttons */
+    #prevButton::before, #nextButton::before {
+        content: "";
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+        border-right: 40px solid rgb(0, 0, 0);
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+/* Style for the left arrow inside the prev button */
+
 
 h1 {
     text-align: center;
