@@ -1,55 +1,69 @@
 
-const LOOK_DELAY = 100;
+const LOOK_DELAY = 1000;
 let startLookTime = Number.POSITIVE_INFINITY;
+let lookDirection = null;
 
 webgazer.setRegression('ridge') /* setzt die Art der Regression auf Ridge */
     .setTracker('clmtrackr') /* setzt den Tracker auf clmtrackr */
     .setGazeListener(function (data, timestamp) {
-        if (data == null) return
-        console.log(data, timestamp);
+        if (data == null || lookDirection === "STOP") return;                // If No data   
+        //console.log(data,timestamp);           // Print data
         var x = data.x;
         var y = data.y;
-        var prevButtonRect = prevButton.getBoundingClientRect();
-        var nextButtonRect = nextButton.getBoundingClientRect();
+        //console.log(timestamp);
 
+        var prevButtonRect = prevButton.getBoundingClientRect();           // get Bounds Prev button
+        var nextButtonRect = nextButton.getBoundingClientRect();           // get Bounds Next Button
 
-        if (x > prevButtonRect.left && x < prevButtonRect.right && y > prevButtonRect.top && y < prevButtonRect.bottom) {
-            var currentLocation = rendition.currentLocation();
+        if (x > prevButtonRect.left && x < prevButtonRect.right && y > prevButtonRect.top && y < prevButtonRect.bottom && lookDirection !== "LEFT" && lookDirection !== "RESET") {          // If x,y is in prev button 
             startLookTime = timestamp;
-            if (startLookTime + LOOK_DELAY < timestamp) {
-                console.log("time");
-            }
-            if (currentLocation.start.index > 0) {
-                var prevLocation = currentLocation.start.index - 1;
-                //rendition.display(prevLocation);
-                console.log("left");
-            }
+            lookDirection = "LEFT";
+
+            //var prevLocation = currentLocation.start.index - 1;
+            //rendition.display(prevLocation);
+            console.log("left");
+
         }
 
-        else if (x > nextButtonRect.left && x < nextButtonRect.right && y > nextButtonRect.top && y < nextButtonRect.bottom) {
-            var currentLocation = rendition.currentLocation();
-            startLookTime = timestamp;
-            if (startLookTime + LOOK_DELAY < timestamp) {
-                console.log("time");
-            }
-            if (currentLocation.start.index < book.spine.length - 1) {
-                var nextLocation = currentLocation.start.index + 1;
-                //rendition.display(nextLocation);
-                console.log("right");
-            }
-        }
+        else if (x > nextButtonRect.left && x < nextButtonRect.right && y > nextButtonRect.top && y < nextButtonRect.bottom && lookDirection !== "RIGHT" && lookDirection !== "RESET") {    // If x,y is in next button 
 
+            startLookTime = timestamp;
+            lookDirection = "RIGHT";
+
+            //var nextLocation = currentLocation.start.index + 1;
+            //rendition.display(nextLocation);
+            console.log("right");
+
+        }
 
         else
-            startLookTime = Number.POSITIVE_INFINITY;
 
+            lookDirection = null;
 
         if (startLookTime + LOOK_DELAY < timestamp) {
-            console.log("time");
+            if (lookDirection === "LEFT") {
+                var currentLocation = rendition.currentLocation();
+                var prevLocation = currentLocation.start.index - 1;
+                rendition.display(prevLocation);
+            }
+            else {
+                var currentLocation = rendition.currentLocation();
+                var nextLocation = currentLocation.start.index + 1;
+                rendition.display(nextLocation);
+            }
+
+            startLookTime = Number.POSITIVE_INFINITY;
+            lookDirection = "STOP";
+            console.log("newtime");
+            setTimeout(() => {
+                lookDirection = "RESET";
+            }, 200)
         }
+
     })
     .begin() /* startet die Verfolgung */
-    .showPredictionPoints(true); /* zeigt die Vorhersagepunkte an */
+//.showPredictionPoints(true); /* zeigt die Vorhersagepunkte an */
+
 
 function nextPage(next = false) {
 

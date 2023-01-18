@@ -38,21 +38,26 @@
             document.getElementById("reader").appendChild(prevButton);
             document.getElementById("reader").appendChild(nextButton);
 
-            prevButton.addEventListener("click", function () {
-                var currentLocation = rendition.currentLocation();
-                if (currentLocation.start.index > 0) {
-                    var prevLocation = currentLocation.start.index - 1;
-                    rendition.display(prevLocation);
-                }
+
+
+            /*
+            prevButton.addEventListener("click", function() {
+            var currentLocation = rendition.currentLocation();
+            if (currentLocation.start.index > 0) {
+                var prevLocation = currentLocation.start.index - 1;
+                rendition.display(prevLocation);
+            }
             });
 
-            nextButton.addEventListener("click", function () {
+            nextButton.addEventListener("click", function() {
                 var currentLocation = rendition.currentLocation();
-                if (currentLocation.start.index < book.spine.length - 1) {
+                if (currentLocation.start.index < book.spine.length-1) {
                     var nextLocation = currentLocation.start.index + 1;
                     rendition.display(nextLocation);
                 }
             });
+
+            */
 
             var book = ePub("https://s3.amazonaws.com/moby-dick/moby-dick.epub");
             var rendition = book.renderTo("reader", {
