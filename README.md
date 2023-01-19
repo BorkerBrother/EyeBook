@@ -14,7 +14,7 @@
       - > Resolution, screen size and camera position
       - > Make use of cookiez
       - > If no camera is available send error    
-  -  Website has to be dynamic: CSS a must
+  -  Website has  to be dynamic: CSS a must
   -  ask for camera access from user
 
     
@@ -30,16 +30,6 @@ be smarter to access a broader audience espacially on IOs
 
 # For Developement
 
-- FACE MESH MEDIA PIPE 
-  - > Maybe we work directly with Facemesh and reduce some landmarks: reduce data, memory, costs
-    > Maybe we can make more landmarks in the Iris section for better reaction with the eyes 
-    > Machine Learning with recorded Video content from a user reading ebook´s
-    > Testing with diffeerent Webcams and Mobile Devices 
-
-
-
-
 - The split between learning stuff might be smart
   - > eg. One goes more into Frontend, and one deeply into backend, while not letting the other one be completly clueless
     > 
-
