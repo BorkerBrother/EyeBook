@@ -5,6 +5,6 @@
 
 - Auf gleichen stand gesetzt
 - Organisation besprochen über GitLab, einrichtung folgt 
-- > Gitlab leitfaden wird noch passne dzu Projekt erklärt, dokumentiert in seperatem dokument 
+  - > Gitlab leitfaden wird noch passend zum Projekt erklärt, dokumentiert in seperatem dokument 
 - Grobe übersicht erstellt mit Freeform
 - Julian's Server kann Probeweise für die Website und Datenbank genutzt werden

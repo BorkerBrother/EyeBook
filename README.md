@@ -32,4 +32,3 @@ be smarter to access a broader audience espacially on IOs
 
 - The split between learning stuff might be smart
   - > eg. One goes more into Frontend, and one deeply into backend, while not letting the other one be completly clueless
-    > 
