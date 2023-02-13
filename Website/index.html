@@ -15,16 +15,14 @@
 
     </script>
 
-
-
-
 </head>
+
+
 <video id="webgazerVideoFeed" width="320" height="240" style="display:none;"></video>
 
 <body>
     <div id="area"></div>
     <h1>eyeBook</h1>
-    <body>
 
         <body>
             <div id="reader" style="background-color: antiquewhite; width: 800px; height: 600px"></div>
@@ -60,16 +58,15 @@
 
             */
 
-            var book = ePub("https://s3.amazonaws.com/moby-dick/moby-dick.epub");
-            var rendition = book.renderTo("reader", {
+            const book = ePub("https://s3.amazonaws.com/moby-dick/moby-dick.epub");
+            const rendition = book.renderTo("reader", {
                 method: "default",
                 width: 600,
                 height: 400
             });
-            var displayed = rendition.display();
-
+            const displayed = rendition.display();
 
 
         </script>
-
+    </body>
 </html>
