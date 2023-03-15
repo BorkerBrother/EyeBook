@@ -1,7 +1,6 @@
-
-
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>eyeBook</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
@@ -11,33 +10,91 @@
     <script src="app.js"></script>
 
     <link rel="stylesheet" type="text/css" href="app.css">
-    <script>
-
-    </script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 </head>
 
 
-<video id="webgazerVideoFeed" width="320" height="240" style="display:none;"></video>
+
 
 <body>
-    <div id="area"></div>
-    <h1>eyeBook</h1>
 
-        <body>
-            <div id="reader" style="background-color: antiquewhite; width: 800px; height: 600px"></div>
-            <button id="prevButton"></button>       <!--we can let the buttons fill with a script from here: https://codepen.io/russgossett/pen/gMNrOQ-->
-            <button id="nextButton"></button>
+    <div class=" container">
+        <nav>
+            <div class="logo">eyebook</div>
+            <u1 class="navItems">
+                <li><a href="#">home</a></li>
+                <li><a href="#">about</a></li>
+                <li><a href="#">test</a></li>
+                <li><a href="#">blog</a></li>
+            </u1>
+            <div class="links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </nav>
 
-        </body>
+        <div class="wrapper">
+            <div class="cols cols0">
+                <h1>JUST<span class="multiText"></span></h1>
+                <p>
+                    An eyebook is a type of book that is designed to be listened and read. Each page containing a different sound or ambience. Eyebooks can be used for a variety of purposes, from educational materials to entertainment.
+                    One of the benefits of an eyebook is that it can engage listeners in a unique and interactive way. Unlike traditional books, eyebooks can incorporate sound effects, music, and other audio elements to enhance the reading experience.
+                </p>
+                <div class="btns">
+                    <button id="buttontop">  Test </button>
+                </div>
+            </div>
+
+            <div class="cols cols1">
+                <div class="imgbox">
+                    <img src="" id="splash">
+                    <img src="Earbook_Startseite.png">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/typed.js@2.0.132/dist/typed.umd.js"></script>
+    <script>
+        var typingEffect = new Typed(".multiText", {
+            strings: ["LISTEN", "READ"],
+            loop: true,
+            typeSpeed: 100,
+            backSpeed: 80,
+            backDelay: 1500
+        })
+    </script>
+
+
+
+    <section id="section1">
+
+        <div id="teaser">
+            <img src="Earbook_Startseite.png" alt="Logo Earbook" />
+        </div>
+
+    </section>
+
+
+
+
+    <section id="section2">
+
+        <div id="area"></div>
+        <h1>eyeBook</h1>
+        <div id="reader" style="background-color: antiquewhite; width: 800px; height: 600px"></div>
+
+        <button id="prevButton"></button>
+        <button id="nextButton"></button>
+
+        <video id="webgazerVideoFeed" width="320" height="240" style="display:none;"></video>
 
         <script>
-
             // Append the buttons to the reader div
             document.getElementById("reader").appendChild(prevButton);
             document.getElementById("reader").appendChild(nextButton);
-
-
 
             /*
             prevButton.addEventListener("click", function() {
@@ -58,15 +115,20 @@
 
             */
 
-            const book = ePub("https://s3.amazonaws.com/moby-dick/moby-dick.epub");
-            const rendition = book.renderTo("reader", {
+            var book = ePub("https://s3.amazonaws.com/moby-dick/moby-dick.epub");
+            var rendition = book.renderTo("reader", {
                 method: "default",
                 width: 600,
                 height: 400
             });
-            const displayed = rendition.display();
-
-
+            var displayed = rendition.display();
         </script>
-    </body>
+    </section>
+
+
+
+
+
+</body>
+
 </html>
