@@ -10,6 +10,7 @@ let isMyAudio4Started = false;
 let isMyAudio3Started = false;
 let isMyAudio2Started = false;
 let isMyAudio1Started = false;
+let calibration = false;
 var gainNode1, gainNode2, gainNode3, gainNode4, gainNode5;
 var audioCtx;
 var myAudio1, myAudio2, myAudio3, myAudio4, myAudio5;
@@ -44,8 +45,8 @@ window.onload = function() {
 
     // Funktion zum Berechnen des Durchschnitts eines Arrays
 
-
     updateAudio();
+  
 
     }).begin();
 
@@ -160,7 +161,6 @@ function updateAudio() {
         myAudio1.start(0);
         isMyAudio1Started = true;
       }
-    console.log(gainNode1.gain.value);
   }
 
   var image2 = document.getElementById('image2');
@@ -179,7 +179,6 @@ function updateAudio() {
           myAudio2.start(0);
           isMyAudio2Started = true;
         }
-      console.log(gainNode2.gain.value);
     }
 
   var image3 = document.getElementById('image3');
@@ -198,7 +197,6 @@ function updateAudio() {
           myAudio3.start(0);
           isMyAudio3Started = true;
         }
-      console.log(gainNode3.gain.value);
     }
 
   var image4 = document.getElementById('image4');
@@ -216,7 +214,6 @@ function updateAudio() {
         myAudio4.start(0);
         isMyAudio4Started = true;
       }
-    console.log(gainNode4.gain.value);
   }
 
 
@@ -273,11 +270,11 @@ function getSmoothedPrediction() {
 //// Calibration 
 function createImagePoints() {
   var points = [
-    {x: 0, y: 0}, // Oben links
-    {x: window.innerWidth - 50, y: 0}, // Oben rechts
+    {x: 100, y: 100}, // Oben links
+    {x: window.innerWidth - 175, y: 100}, // Oben rechts
     {x: window.innerWidth / 2 - 25, y: window.innerHeight / 2 - 25}, // Zentrum
-    {x: 0, y: window.innerHeight - 50}, // Unten links
-    {x: window.innerWidth - 50, y: window.innerHeight - 50}, // Unten rechts
+    {x: 100, y: window.innerHeight - 150}, // Unten links
+    {x: window.innerWidth - 175, y: window.innerHeight - 150}, // Unten rechts
   ];
 
   // Erstelle einen Punkt für jede Position
@@ -293,6 +290,22 @@ function createImagePoint(x, y) {
   point.classList.add('training-point');
   point.style.left = `${x}px`;
   point.style.top = `${y}px`;
+
+  // Initialisiere den Zähler für den Punkt
+  point.counter = 0;
+  
+  point.addEventListener('click', function() {
+    point.counter++;
+    // Wenn der Punkt dreimal angeklickt wurde, entferne ihn
+    if (point.counter >= 9) {
+      point.remove();
+      clickedPoints++;
+      // Wenn alle Punkte angeklickt wurden, öffne das Modal-Popup
+      //if (clickedPoints >= 5) {
+      //  calibration = true;
+      //}
+    }
+  });
 
   document.body.appendChild(point);
 }

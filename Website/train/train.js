@@ -81,17 +81,17 @@ function getSmoothedPrediction() {
 //// Calibration 
 function createCalibrationPoints() {
   var points = [
-    //{x: 0, y: 0}, // Oben links
-    //{x: window.innerWidth / 2 - 25, y: 0}, // Oben Mitte
-    //{x: window.innerWidth - 50, y: 0}, // Oben rechts
+    {x: 0, y: 0}, // Oben links
+    {x: window.innerWidth / 2 - 25, y: 0}, // Oben Mitte
+    {x: window.innerWidth - 50, y: 0}, // Oben rechts
 
-    //{x: 0, y: window.innerHeight / 2 - 25}, // Mitte links
+    {x: 0, y: window.innerHeight / 2 - 25}, // Mitte links
     {x: window.innerWidth / 2 - 25, y: window.innerHeight / 2 - 25}, // Zentrum
-    //{x: window.innerWidth - 50, y: window.innerHeight / 2 - 25}, // Mitte rechts
+    {x: window.innerWidth - 50, y: window.innerHeight / 2 - 25}, // Mitte rechts
 
-    //{x: 0, y: window.innerHeight - 50}, // Unten links
-    //{x: window.innerWidth / 2 - 25, y: window.innerHeight - 50}, // Unten Mitte
-    //{x: window.innerWidth - 50, y: window.innerHeight - 50}, // Unten rechts
+    {x: 0, y: window.innerHeight - 50}, // Unten links
+    {x: window.innerWidth / 2 - 25, y: window.innerHeight - 50}, // Unten Mitte
+    {x: window.innerWidth - 50, y: window.innerHeight - 50}, // Unten rechts
   ];
 
   // Erstelle einen Punkt für jede Position
@@ -119,7 +119,7 @@ function createCalibrationPoint(x, y) {
       point.remove();
       clickedPoints++;
       // Wenn alle Punkte angeklickt wurden, öffne das Modal-Popup
-      if (clickedPoints >= 1) {
+      if (clickedPoints >= 9) {
         modal.style.display = "block";
       }
     }
