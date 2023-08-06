@@ -1,0 +1,45 @@
+.training-point {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+/* Der Modal (Hintergrund) */
+.modal {
+    display: none; /* Versteckt standardmäßig */
+    position: fixed; /* Bleiben Sie an Ort und Stelle */
+    z-index: 1; /* Liegt über allen anderen Elementen */
+    left: 0;
+    top: 0;
+    width: 100%; /* Volle Breite */
+    height: 100%; /* Volle Höhe */
+    overflow: auto; /* Aktivieren Sie das Scrollen, wenn nötig */
+    background-color: rgb(0,0,0); /* Fallback-Farbe */
+    background-color: rgba(0,0,0,0.4); /* Schwarzer Hintergrund mit Unschärfe */
+  }
+  
+  /* Modal-Inhalt */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% vom oberen Rand + zentriert */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Default-Breite */
+  }
+  
+  /* Das Schließen-Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
